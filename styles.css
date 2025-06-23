@@ -1,0 +1,51 @@
+/* ---------- MOBILE FIRST ---------- */
+:root {
+  --bg: #1d2935;
+  --card: #212e3e;
+  --text: #f0f0f0;
+  --accent: #ff9e40;
+  --radius: 10px;
+  font-family: system-ui, sans-serif;
+}
+
+body { margin: 0; background: var(--bg); color: var(--text); }
+h1   { margin: 0 0 1rem; text-align: center; font-size: 1.4rem; }
+
+.card {
+  max-width: 500px;
+  margin: 1rem auto;
+  padding: 1rem;
+  background: var(--card);
+  border-radius: var(--radius);
+}
+
+table { width: 100%; margin-bottom: 1rem; border-collapse: collapse; }
+td    { padding: 4px 0; }
+td:first-child { opacity: .7; }
+
+label { display: block; margin-bottom: .8rem; }
+input, textarea, select {
+  width: 100%;
+  padding: .6rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+textarea { resize: vertical; }
+
+.cols { display: flex; gap: .5rem; }
+.cols > label { flex: 1; }
+
+.btn-ok {
+  width: 100%;
+  padding: .8rem 0;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.hidden { display: none; }
+.msg    { text-align: center; margin-top: 1rem; }
