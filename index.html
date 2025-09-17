@@ -23,52 +23,48 @@
     <h1>Registro de Actividad</h1>
 
     <form id="registroForm">
-      <label>Fecha
-        <input type="date" name="fecha" required>
+      <label for="fecha">Fecha
+        <input id="fecha" type="date" name="fecha" required>
       </label>
 
       <div class="cols">
-        <label>Hora Entrada
-          <input type="time" name="horarioEntrada" required>
+        <label for="horarioEntrada">Hora Entrada
+          <input id="horarioEntrada" type="time" name="horarioEntrada" required>
         </label>
-        <label>Hora Salida
-          <input type="time" name="horarioSalida">
+        <label for="horarioSalida">Hora Salida
+          <input id="horarioSalida" type="time" name="horarioSalida">
         </label>
       </div>
 
-      <label>N° de rollo
-        <input name="nroRollo" type="number">
+      <label for="nroRollo">N° de rollo
+        <input id="nroRollo" name="nroRollo" type="text">
       </label>
 
-      <label>Pasadas /10 cm
-        <input name="pasadasReales" type="number">
+      <label for="pasadasReales">Pasadas /10 cm
+        <input id="pasadasReales" name="pasadasReales" type="number" step="1" inputmode="numeric">
       </label>
 
-      <div class="cols">
-        <label>Cant. personas
-          <input name="cantidadPersonas" type="number" min="1" value="1">
+      <div class="cols cols--stretch">
+        <label for="cantPersonas">Cant. personas
+          <select id="cantPersonas" name="cantPersonas"></select>
         </label>
-        <label>Operario
-          <input name="operario1" list="opers">
-        </label>
-        <datalist id="opers">
-          <option>Sturtz</option>
-          <option>Marcos</option>
-          <option>Anita</option>
-        </datalist>
+        <div class="multi-operarios">
+          <span class="multi-operarios__label">Operario(s)</span>
+          <div id="operariosContainer"></div>
+        </div>
       </div>
 
       <div class="cols">
-        <label>Mts iniciales
-          <input name="mtsIniciales" type="number" step="0.01">
+        <label for="mtsIniciales">Mts iniciales
+          <input id="mtsIniciales" name="mtsIniciales" type="number" step="0.01" required inputmode="decimal">
         </label>
-        <label>Mts finales
-          <input name="mtsFinales" type="number" step="0.01">
+        <label for="mtsFinales">Mts finales
+          <input id="mtsFinales" name="mtsFinales" type="number" step="0.01" required inputmode="decimal">
         </label>
       </div>
 
-      <label>Observaciones
-        <textarea name="observaciones" rows="3"></textarea>
+      <label for="observaciones">Observaciones
+        <textarea id="observaciones" name="observaciones" rows="3"></textarea>
       </label>
 
       <button class="btn-ok" type="submit">Guardar Registro</button>
