@@ -36,6 +36,41 @@ textarea { resize: vertical; }
 .cols { display: flex; gap: .5rem; }
 .cols > label { flex: 1; }
 
+.cols--stretch { align-items: flex-start; }
+.cols--stretch > label,
+.cols--stretch > .multi-operarios { flex: 1; }
+
+.multi-operarios {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.multi-operarios__label {
+  font-size: .9rem;
+  opacity: .85;
+}
+
+#operariosContainer {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.operario-field {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+
+.operario-field__caption {
+  font-size: .9rem;
+}
+
+.operario-field select {
+  width: 100%;
+}
+
 .btn-ok {
   width: 100%;
   padding: .8rem 0;
