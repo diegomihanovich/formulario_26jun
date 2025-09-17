@@ -44,6 +44,8 @@ const renderOperarioFields = () => {
   const cantidad = parseInt(cantPersonasSelect.value, 10) || 1;
   operariosContainer.innerHTML = '';
 
+  const hasOperariosDisponibles = operariosDisponibles.length > 0;
+
   for (let i = 1; i <= cantidad; i += 1) {
     const wrapper = document.createElement('label');
     wrapper.className = 'operario-field';
@@ -55,9 +57,9 @@ const renderOperarioFields = () => {
 
     const select = document.createElement('select');
     select.name = `operario${i}`;
-    select.required = true;
+    select.required = hasOperariosDisponibles;
 
-    if (operariosDisponibles.length === 0) {
+    if (!hasOperariosDisponibles) {
       select.appendChild(createSelectOption('', 'Sin operarios'));
     } else {
       operariosDisponibles.forEach((operario) => {
@@ -165,9 +167,11 @@ const buildPayload = () => {
     .map(([, value]) => value)
     .filter((value) => value);
 
+  const hasOperariosDisponibles = operariosDisponibles.length > 0;
+
   const payload = {
     ...datos,
-    operariosLista: operarios.join(', '),
+    operariosLista: hasOperariosDisponibles ? operarios.join(', ') : '',
   };
 
   Object.entries(fixedData).forEach(([key, value]) => {
