@@ -94,6 +94,7 @@ const handleDropdownData = (data) => {
 };
 
 const updateFixedData = (data) => {
+  btnCont.disabled = true;
   fixedData = data || {};
   tabla.innerHTML = '';
 
@@ -101,6 +102,8 @@ const updateFixedData = (data) => {
     showTableMessage('No se encontraron detalles para mostrar.');
     return;
   }
+
+  btnCont.disabled = false;
 
   Object.entries(data).forEach(([key, value]) => {
     const row = document.createElement('tr');
@@ -157,6 +160,10 @@ const loadDropdowns = async () => {
 };
 
 const buildPayload = () => {
+  if (!fixedData || Object.keys(fixedData).length === 0) {
+    throw new Error('Datos fijos no disponibles. Por favor recarga la página e inténtalo nuevamente.');
+  }
+
   const formEntries = Array.from(new FormData(form).entries())
     .map(([key, value]) => [key, typeof value === 'string' ? value.trim() : value]);
 
@@ -214,6 +221,7 @@ const onSaveError = (error) => {
 
 /* ---- Inicialización ---- */
 setTodayAsDefaultDate();
+btnCont.disabled = true;
 loadFixedData();
 loadDropdowns();
 
