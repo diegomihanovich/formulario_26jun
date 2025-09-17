@@ -29,27 +29,27 @@
 
       <div class="cols">
         <label>Hora Entrada
-          <input type="time" name="horaIn" required>
+          <input type="time" name="horarioEntrada" required>
         </label>
         <label>Hora Salida
-          <input type="time" name="horaOut">
+          <input type="time" name="horarioSalida">
         </label>
       </div>
 
       <label>N° de rollo
-        <input name="rollo" type="number">
+        <input name="nroRollo" type="number">
       </label>
 
       <label>Pasadas /10 cm
-        <input name="pasadas" type="number">
+        <input name="pasadasReales" type="number">
       </label>
 
       <div class="cols">
         <label>Cant. personas
-          <input name="cantPersonas" type="number" min="1" value="1">
+          <input name="cantidadPersonas" type="number" min="1" value="1">
         </label>
         <label>Operario
-          <input name="operario" list="opers">
+          <input name="operario1" list="opers">
         </label>
         <datalist id="opers">
           <option>Sturtz</option>
@@ -60,15 +60,15 @@
 
       <div class="cols">
         <label>Mts iniciales
-          <input name="mtsIni" type="number" step="0.01">
+          <input name="mtsIniciales" type="number" step="0.01">
         </label>
         <label>Mts finales
-          <input name="mtsFin" type="number" step="0.01">
+          <input name="mtsFinales" type="number" step="0.01">
         </label>
       </div>
 
       <label>Observaciones
-        <textarea name="obs" rows="3"></textarea>
+        <textarea name="observaciones" rows="3"></textarea>
       </label>
 
       <button class="btn-ok" type="submit">Guardar Registro</button>

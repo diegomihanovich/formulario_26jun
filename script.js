@@ -49,24 +49,39 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   msg.textContent = 'Enviando...';
 
-  const datos = new FormData(form);
-  datos.append('action', 'addRecord');
+  const formEntries = Array.from(new FormData(form).entries())
+    .map(([key, value]) => [key, typeof value === 'string' ? value.trim() : value]);
+  const datos = Object.fromEntries(formEntries);
+  const operariosLista = formEntries
+    .filter(([key]) => key.toLowerCase().startsWith('operario'))
+    .map(([, value]) => value)
+    .filter(value => value !== undefined && value !== null && value !== '');
+
+  const payload = { ...datos, operariosLista };
 
   for (const [key, value] of Object.entries(fixedData)) {
-    if (!datos.has(key)) {
-      datos.append(key, value ?? '');
-    }
+    payload[key] = value ?? '';
   }
 
-  fetch('https://script.google.com/macros/s/AKfycby9T6ToO_LjYwJiv1GHWHlfIWfHYqyHtotQWrx1fj4lbn4dkvXucxi9WL7ziHlzYAIl/exec', { method:'POST', body:datos })
-    .then(r => r.json())
-    .then(r => {
-      if (r.ok) {
-        msg.textContent = '✅ ¡Registro guardado!';
-        form.reset();
-      } else {
-        throw r.error;
-      }
-    })
-    .catch(err => msg.textContent = '❌ Error: ' + err);
+  google.script.run
+    .withSuccessHandler(onSaveSuccess)
+    .withFailureHandler(onSaveError)
+    .saveEntry(payload);
 });
+
+function onSaveSuccess(response) {
+  if (!response || response.ok) {
+    msg.textContent = '✅ ¡Registro guardado!';
+    form.reset();
+  } else {
+    const err = response && response.error ? response.error : 'Error desconocido';
+    onSaveError(err);
+  }
+}
+
+function onSaveError(error) {
+  const message = typeof error === 'string'
+    ? error
+    : (error && error.message) ? error.message : 'Error desconocido';
+  msg.textContent = '❌ Error: ' + message;
+}
